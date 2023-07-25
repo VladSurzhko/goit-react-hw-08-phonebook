@@ -5,7 +5,7 @@ export const AuthNav = () => {
   return (
     <WrapperAuthNav>
       <li>
-        <StyledLink to="/register">Sign Up</StyledLink>
+        <StyledLink to="/register">Register</StyledLink>
       </li>
       <li>
         <StyledLink to="/login">Log In</StyledLink>

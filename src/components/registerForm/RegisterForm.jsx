@@ -22,7 +22,7 @@ export const RegisterForm = () => {
 
     <div className={css.rbox}>
       
-          <h2 className={css.rtitle}>Sign up form</h2>
+          <h2 className={css.rtitle}>Registration</h2>
           <form className={css.rform} onSubmit={handleSubmit}>
               <label className={css.rlabel}>
                   Name
@@ -39,20 +39,6 @@ export const RegisterForm = () => {
               <button type='submit' className={css.rbtn}>Sign Up</button>
           </form>
     </div>
-    // <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-    //   <label className={css.label}>
-    //     Username
-    //     <input type="text" name="name" />
-    //   </label>
-    //   <label className={css.label}>
-    //     Email
-    //     <input type="email" name="email" />
-    //   </label>
-    //   <label className={css.label}>
-    //     Password
-    //     <input type="password" name="password" />
-    //   </label>
-    //   <button type="submit">Register</button>
-    // </form>
+   
   );
 };
