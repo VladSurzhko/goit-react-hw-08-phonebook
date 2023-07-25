@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logOut, refreshUser, } from "./operations";
+import { register, logIn, logOut, refreshUser, } from './operations'
 
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
     isRefreshing: false,
   };
 
-  const authSlice = createSlice({
+export  const authSlice = createSlice({
     name: 'auth',
     initialState,
     extraReducers: {
@@ -42,5 +42,5 @@ const initialState = {
     },
   });
   
-  export const authReducer = authSlice.reducer;
+   export const authReducer = authSlice.reducer;
   

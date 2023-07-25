@@ -1,26 +1,33 @@
 import React from "react";
-import css from "../Phonebook/phonestyle.module.css";
-// import PropTypes from "prop-types"
+import css from '../Phonebook/phonestyle.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilter } from "redux/selectors";
+import { filterUser } from "redux/filterSlice";
 
-const Filter = ({ filter, onFilterChange }) => {
+
+
+export const Filter = () => {
+  const dispatch = useDispatch()
+
+  const changeFilter = event => {
+    dispatch(filterUser(event.currentTarget.value));
+  };
+
+   const value = useSelector(selectFilter)
+
   return (
-    <label className={css.findContact} htmlFor="filterInput">
+    
+    <label className={css.clabel} htmlFor="filterInput">
       Find contacts by name:
       <input
-        className={css.lastInput}
+        className={css.cinput}
         id="filterInput"
         type="text"
         name="filter"
-        value={filter}
-        onChange={onFilterChange}
+        value={value}
+        onChange={changeFilter}
       />
     </label>
+    
   );
 };
-
-export default Filter;
-
-
-// Filter.propTypes = {
-//   filter:PropTypes.string,
-// }

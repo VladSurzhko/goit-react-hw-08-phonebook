@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "redux/creatThunk";
+import { addContact } from "redux/contactSlice";
 import { selectContacts } from "redux/selectors";
 
 
@@ -31,10 +31,7 @@ import css from "../Phonebook/phonestyle.module.css";
   };
 
 
-  //   onAddContact(name, number);
-  //  setName("");
-  //  setNumber("");
-  // };
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

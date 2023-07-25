@@ -1,50 +1,41 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { contactsReducer, filterReducer } from './reducer';
-import { contactsReducer } from './contactSlice';
-import { filterReducer } from './filterSlice';
+import { contactSlice} from './contactSlice'
+import { authSlice } from './auth/authSlice'
+import  filterSlice  from './filterSlice'
 
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+
+const authPersistConfig = { key: 'auth', storage, whitelist: ['token'] };
+
+const persistedContactsReducer = persistReducer(
+  authPersistConfig,
+  authSlice.reducer
+);
 
 export const store = configureStore({
   reducer: {
-    contacts: contactsReducer,
-    filter: filterReducer,
+    auth: persistedContactsReducer,
+    contacts: contactSlice.reducer,
+    filter: filterSlice.reducer,
+  },
+  middleware(getDefaultMiddleware) {
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    });
   },
 });
 
-
-// import {combineReducers, configureStore } from '@reduxjs/toolkit';
-// import storage from 'redux-persist/lib/storage';
-// import { filterReducer } from './filterSlice';
-// import { contactsReducer } from './contactSlice';
-// import { persistStore, 
-// persistReducer,
-// FLUSH,
-// REHYDRATE,
-// PAUSE,
-// PERSIST,
-// PURGE,
-// REGISTER } from 'redux-persist';
-
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// };
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer,
-//   filter: filterReducer,
-// });
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// export const store = configureStore({
-
-//   reducer: persistedReducer,
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//       },
-//     }),
-// });
-
-// export const persistor = persistStore(store);
-
+export const persistor = persistStore(store);

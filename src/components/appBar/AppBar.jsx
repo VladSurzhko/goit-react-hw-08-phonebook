@@ -1,17 +1,17 @@
-import { Navigation } from 'components/navigation/Navigation';
-import { AuthNav } from 'components/authNav/AauthNav';
-import UserMenu from 'components/userMenu/UserMenu';
-import { useAuth } from 'components/hooks/useAurh';
-import { HeaderWrapper } from './AppBar.styled';
+import { Navigation } from '../navigation/Navigation'
+import { AuthNav } from '../authNav/AuthNav'
+import UserMenu from 'components/UserMenu/userMenu'
+import { useAuth } from '../UseAuth/useAuth'
+import css from './AppBar.module.css'
 
 const AppBar = () => {
   const { isLoggedIn } = useAuth();
 
-  return (
-    <HeaderWrapper>
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </HeaderWrapper>
+    return (
+        <header className={css.head} >
+            <Navigation />
+       {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      </header>
   );
 };
 
